@@ -1,57 +1,73 @@
-// 'use client';
+'use client';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useSession } from 'next-auth/react';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { createPostAction, getUserByEmailAction } from '@/app/actions';
+import { Input, TextArea } from '@/hook-form';
+import { Button } from '@/ui';
 
+const schema = z.object({
+  title: z.string().refine((value) => !!value, { message: 'Title is required', path: ['title'] }),
+  content: z
+    .string()
+    .refine((value) => !!value, { message: 'Content is required', path: ['content'] }),
+});
 
-// import { createPostAction, getUserByEmailAction } from '@/app/actions';
-// import { useSession } from 'next-auth/react';
-// import { z } from 'zod';
+type FormSchema = z.infer<typeof schema>;
 
-// const schema = z.object({
-//   title: z.string().refine((value) => !!value, 'Title is required'),
-//   content: z.string().refine((value) => !!value, 'Content is required'),
-// });
+export function CreatePostForm() {
+  const { data: session } = useSession();
 
-// export function CreatePostForm() {
-//   const { data: session } = useSession();
+  const methods = useForm<FormSchema>({
+    defaultValues: {
+      title: '',
+      content: '',
+    },
+    resolver: zodResolver(schema),
+  });
 
-//   const form = useForm({
-//     defaultValues: {
-//       title: '',
-//       content: '',
-//     },
-//     onSubmit: async (values, helpers) => {
-//       try {
-//         const user = await getUserByEmailAction('/profile', session?.user?.email);
+  const {
+    handleSubmit,
+    formState: { isSubmitting, isValidating },
+    reset,
+  } = methods;
 
-//         if (!user) {
-//           throw new Error('User not found');
-//         }
+  const onSubmit: SubmitHandler<FormSchema> = async (data) => {
+    try {
+      schema.parse(data);
+      const user = await getUserByEmailAction('/profile', session?.user?.email);
 
-//         await createPostAction({
-//           title: values.title,
-//           content: values.content,
-//           authorId: user?.id,
-//           path: '/profile',
-//         });
+      if (!user) {
+        throw new Error('User not found');
+      }
 
-//         helpers.reset();
-//       } catch (error) {
-//         return helpers.setError('form', { message: `${error}` });
-//       }
-//     },
-//     schema,
-//   });
+      await createPostAction({
+        title: data.title,
+        content: data.content,
+        authorId: user?.id,
+        path: '/profile',
+      });
 
-//   const { formState } = form;
-//   const isDisabled = formState.isSubmitting || formState.isValidating;
+      reset();
+    } catch (error) {
+      console.error('Form data validation failed:', error);
+    }
+  };
 
-//   return (
-//     <Form form={form}>
-//       <Input name="title" label="Post Title" placeholder="title" />
-//       <Textarea name="content" label="Post Content" placeholder="Post content" />
-//       <FormErrorMessage />
-//       <SubmitButton disabled={isDisabled} appearance="primary">
-//         Create Post
-//       </SubmitButton>
-//     </Form>
-//   );
-// }
+  const isDisabled = isSubmitting || isValidating;
+
+  return (
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Input name="title" label="Post Title" placeholder="title" />
+        <TextArea name="content" label="Post Content" placeholder="Post content" />
+        <div className="flex justify-end mt-6 w-full">
+          <Button type="submit" disabled={isDisabled} appearance="primary">
+            Create Post
+          </Button>
+        </div>
+      </form>
+    </FormProvider>
+  );
+}
