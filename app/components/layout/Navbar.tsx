@@ -9,7 +9,7 @@ export function Navbar() {
         <li>
           <Link href="/">
             <Image
-              src="/pirate_coder.png"
+              src="/pirate-icon.png"
               alt="Logo"
               width={48}
               height={48}
@@ -22,7 +22,7 @@ export function Navbar() {
           <Link href="/profile">Profile</Link>
         </li>
         <li>
-          <Link href="/post">Posts</Link>
+          <Link href="/posts">Posts</Link>
         </li>
         <li>
           <AuthButton />
