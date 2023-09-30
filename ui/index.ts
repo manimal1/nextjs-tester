@@ -5,7 +5,6 @@ export * from './components/elements/Link';
 
 // feedback
 export * from './components/feedback/ErrorMessage';
-export * from './components/feedback/Skeleton';
 
 // forms
 export * from './components/forms/Input';
