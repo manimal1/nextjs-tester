@@ -17,11 +17,16 @@ export default async function Page() {
 
   return (
     <section className="flex flex-col">
+      <h1 className="heading">Posts</h1>
       <div className="flex flex-col space-y-6">
         {postsSortedByDate.map((post) => (
           <div className="relative" key={post.id}>
-            <Link href={`/post/${post.id}`} className="inline-block">
-              <HiArrowTopRightOnSquare className="text-secondary h-6 w-6 absolute top-8 right-2 lefat-auto" />
+            <Link href={`/posts/${post.id}`} className="inline-block">
+              <span className="sr-only">{post.title}</span>
+              <HiArrowTopRightOnSquare
+                alt="post-link"
+                className="text-secondary h-6 w-6 absolute top-8 right-2 lefat-auto"
+              />
             </Link>
             <Post post={post} />
           </div>
