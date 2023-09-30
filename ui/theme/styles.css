@@ -4,12 +4,12 @@
 
 @layer base {
   :root {
-    --color-primary: 56 178 172; /* teal-500, #38B2ac */
-    --color-primary-focus: 49 151 149; /* teal-600, #319795 */
-    --color-primary-lighter: 178 245 234; /* teal-200, #b2f5ea */
-    --color-primary-light: 79 209 197; /* teal-400, #4fd1c5 */
-    --color-primary-dark: 49 151 149; /* teal-600, #319795 */
-    --color-primary-darker: 40 94 97; /* teal-800, #285e61 */
+    --color-primary: 14 165 233; /* sky-500, #0ea5e9 */
+    --color-primary-focus: 2 132 199; /* sky-600, #0284c7 */
+    --color-primary-lighter: 186 230 253; /* sky-200, #bae6fd */
+    --color-primary-light: 56 189 248; /* sky-400, #38bdf8 */
+    --color-primary-focus: 2 132 199; /* sky-600, #0284c7 */
+    --color-primary-darker: 7 89 133; /* sky-800, #075985 */
     --color-primary-content: 255 255 255; /* white, #ffffff */
     --color-secondary: 236 72 153; /* pink-500, #ec4899 */
     --color-secondary-focus: 219 39 119; /* pink-600, #db2777 */
@@ -30,12 +30,12 @@
   }
 
   .dark {
-    --color-primary: 56 178 172; /* teal-500, #38B2ac */
-    --color-primary-focus: 79 209 197; /* teal-400, #4fd1c5 */
-    --color-primary-lighter: 178 245 234; /* teal-200, #b2f5ea */
-    --color-primary-light: 79 209 197; /* teal-400, #4fd1c5 */
-    --color-primary-dark: 49 151 149; /* teal-600, #319795 */
-    --color-primary-darker: 40 94 97; /* teal-800, #285e61 */
+    --color-primary: 14 165 233; /* sky-500, #0ea5e9 */
+    --color-primary-focus: 56 189 248; /* sky-400, #38bdf8 */
+    --color-primary-lighter: 186 230 253; /* sky-200, #bae6fd */
+    --color-primary-light: 56 189 248; /* sky-400, #38bdf8 */
+    --color-primary-dark: 2 132 199; /* sky-600, #0284c7 */
+    --color-primary-darker: 7 89 133; /* sky-800, #075985 */
     --color-primary-content: 255 255 255; /* white, #ffffff */
     --color-secondary: 236 72 153; /* pink-500, #ec4899 */
     --color-secondary-focus: 244 114 182; /* pink-400, #f472b6 */
