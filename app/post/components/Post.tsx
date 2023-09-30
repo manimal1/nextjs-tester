@@ -14,7 +14,7 @@ export async function Post({ post }: any) {
   const publicationDate = dayjs(post.createdAt).format('DD/MM/YYYY');
 
   return (
-    <section className="bg-base-300 rounded-lg hover:texzt-base-content">
+    <section className="bg-base-300 rounded-lg">
       <Container>
         <div className="flex flex-col space-y-2">
           <h2 className="heading">{post?.title}</h2>

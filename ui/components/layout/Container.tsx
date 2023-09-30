@@ -1,13 +1,8 @@
 import classNames from 'classnames';
 import type { ComponentPropsWithoutRef } from 'react';
 
-export interface ContainerProps extends ComponentPropsWithoutRef<'div'> {
-  appearance?: 'default' | 'narrow';
-  padded?: boolean;
-}
-
-export function Container({ className, children }: ContainerProps) {
-  const classes = classNames('mx-auto py-4 xs:px-2 sm:px-4 lg:px-6', className);
+export function Container({ className, children }: ComponentPropsWithoutRef<'div'>) {
+  const classes = classNames('mx-auto px-4 py-4 md:px-6', className);
 
   return <div className={classes}>{children}</div>;
 }

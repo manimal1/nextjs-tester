@@ -11,7 +11,7 @@ export function ErrorMessage({ children, className, id }: ErrorMessageProps) {
     return null;
   }
 
-  const classes = classNames('text-sm text-error', className);
+  const classes = classNames('text-sm text-error mt-0', className);
 
   const content =
     typeof children === 'string' ? (

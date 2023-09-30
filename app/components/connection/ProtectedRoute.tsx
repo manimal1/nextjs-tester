@@ -6,7 +6,7 @@ export async function ProtectedRoute({ children }: { children: React.ReactNode }
   if (!session || !session.user) {
     return (
       <>
-        <p>
+        <p className="title-lg">
           this is a protected route. You need to{' '}
           <a href="/api/auth/signin" className="text-primary">
             Login to continue
