@@ -1,57 +1,57 @@
-'use client';
+// 'use client';
 
-import { Form, FormErrorMessage, Input, SubmitButton, Textarea, useForm } from '@/hook-form';
-import { createPostAction, getUserByEmailAction } from '@/app/actions';
-import { useSession } from 'next-auth/react';
-import { z } from 'zod';
 
-const schema = z.object({
-  title: z.string().refine((value) => !!value, 'Title is required'),
-  content: z.string().refine((value) => !!value, 'Content is required'),
-});
+// import { createPostAction, getUserByEmailAction } from '@/app/actions';
+// import { useSession } from 'next-auth/react';
+// import { z } from 'zod';
 
-export function CreatePostForm() {
-  const { data: session } = useSession();
+// const schema = z.object({
+//   title: z.string().refine((value) => !!value, 'Title is required'),
+//   content: z.string().refine((value) => !!value, 'Content is required'),
+// });
 
-  const form = useForm({
-    defaultValues: {
-      title: '',
-      content: '',
-    },
-    onSubmit: async (values, helpers) => {
-      try {
-        const user = await getUserByEmailAction('/profile', session?.user?.email);
+// export function CreatePostForm() {
+//   const { data: session } = useSession();
 
-        if (!user) {
-          throw new Error('User not found');
-        }
+//   const form = useForm({
+//     defaultValues: {
+//       title: '',
+//       content: '',
+//     },
+//     onSubmit: async (values, helpers) => {
+//       try {
+//         const user = await getUserByEmailAction('/profile', session?.user?.email);
 
-        await createPostAction({
-          title: values.title,
-          content: values.content,
-          authorId: user?.id,
-          path: '/profile',
-        });
+//         if (!user) {
+//           throw new Error('User not found');
+//         }
 
-        helpers.reset();
-      } catch (error) {
-        return helpers.setError('form', { message: `${error}` });
-      }
-    },
-    schema,
-  });
+//         await createPostAction({
+//           title: values.title,
+//           content: values.content,
+//           authorId: user?.id,
+//           path: '/profile',
+//         });
 
-  const { formState } = form;
-  const isDisabled = formState.isSubmitting || formState.isValidating;
+//         helpers.reset();
+//       } catch (error) {
+//         return helpers.setError('form', { message: `${error}` });
+//       }
+//     },
+//     schema,
+//   });
 
-  return (
-    <Form form={form}>
-      <Input name="title" label="Post Title" placeholder="title" />
-      <Textarea name="content" label="Post Content" placeholder="Post content" />
-      <FormErrorMessage />
-      <SubmitButton disabled={isDisabled} appearance="primary">
-        Create Post
-      </SubmitButton>
-    </Form>
-  );
-}
+//   const { formState } = form;
+//   const isDisabled = formState.isSubmitting || formState.isValidating;
+
+//   return (
+//     <Form form={form}>
+//       <Input name="title" label="Post Title" placeholder="title" />
+//       <Textarea name="content" label="Post Content" placeholder="Post content" />
+//       <FormErrorMessage />
+//       <SubmitButton disabled={isDisabled} appearance="primary">
+//         Create Post
+//       </SubmitButton>
+//     </Form>
+//   );
+// }
