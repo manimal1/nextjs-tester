@@ -14,6 +14,7 @@ export * from './components/forms/TextArea';
 
 // layout
 export * from './components/layout/Container';
+export * from './components/layout/PageLayout';
 
 // typography
 export * from './components/typography/ScreenReaderText';
