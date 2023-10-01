@@ -24,8 +24,9 @@ export function TextArea<TFieldValues extends FieldValues = FieldValues>({
     <div className="mb-4">
       <TextAreaBase
         id={name}
-        placeholder={placeholder}
         disabled={formState.isSubmitting}
+        error={isError}
+        placeholder={placeholder}
         label={label}
         {...props}
         {...field}

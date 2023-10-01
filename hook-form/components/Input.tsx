@@ -21,9 +21,10 @@ export function Input({ name, label, placeholder }: InputProps) {
       <InputBase
         id={name}
         className="custom-input"
+        disabled={formState.isSubmitting}
+        error={isError}
         label={label}
         placeholder={placeholder}
-        disabled={formState.isSubmitting}
         {...field}
         onBlur={() => trigger(name)}
       />
