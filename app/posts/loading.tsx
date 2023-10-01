@@ -1,7 +1,6 @@
+import { LoadingPage } from '@/app/components';
+
+// TODO: put in a loading skeleton for posts instead of standard loader
 export default function LoadingPosts() {
-  return (
-    <section className="mt-14 w-full flex items-center justify-center">
-      <span className="loader" />
-    </section>
-  );
+  return <LoadingPage />;
 }
