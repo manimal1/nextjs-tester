@@ -25,7 +25,7 @@ export default async function Page() {
               <span className="sr-only">{post.title}</span>
               <HiArrowTopRightOnSquare
                 alt="post-link"
-                className="text-secondary h-6 w-6 absolute top-8 right-2 lefat-auto"
+                className="text-secondary h-6 w-6 absolute top-8 right-2"
               />
             </Link>
             <Post post={post} />
