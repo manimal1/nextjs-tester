@@ -1,6 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+This application uses a variety of libraries and technologies, including TypeScript, React, Next.js, Postgres, Prisma, Vercel, Next Auth, Tailwindcss, React-Hook-Form, Zod, and Playwright.
+
 ## Getting Started
+
+Please be sure to use Node v18.17.1 or higher when running this app locally or Next Auth login will not function properly.
 
 First, install dependencies:
 
