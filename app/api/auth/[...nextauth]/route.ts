@@ -1,8 +1,8 @@
-import NextAuth, { User, SessionStrategy } from 'next-auth';
+import NextAuth, { Session, User } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
 import prisma from '@/prisma';
 
-const authOptions = {
+export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GitHubProvider({
@@ -29,6 +29,17 @@ const authOptions = {
     async redirect({ baseUrl }: { baseUrl: string }) {
       return baseUrl;
     },
+    async session({ session }: { session: Session }) {
+      const currentUser = await prisma.user.findUnique({ where: { email: session?.user?.email ?? '' } });
+
+      return {
+      ...session,
+      user: {
+        ...session.user,
+        id: currentUser?.id ?? '',
+        profession: currentUser?.profession ?? '',
+      },
+    }},
   },
 };
 
