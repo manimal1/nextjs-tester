@@ -1,7 +1,7 @@
-import { ProtectedRoute } from '@/app/components';
-import { Container } from '@/ui';
-import { CreatePostForm } from './components/CreatPostForm';
-import { ProfileHeader } from './components/ProfileHeader';
+import { ProtectedRoute } from "@/app/components";
+import { Container } from "@/ui";
+import { CreatePostForm } from "./components/CreatePostForm";
+import { ProfileHeader } from "./components/ProfileHeader";
 
 export default async function ProfileRoute() {
   return (
