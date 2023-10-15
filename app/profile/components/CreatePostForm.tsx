@@ -52,7 +52,8 @@ export function CreatePostForm() {
     }
   };
 
-  const isDisabled = isSubmitting || isValidating || !isValid;
+  const isLoading = isSubmitting || isValidating;
+  const isDisabled = isLoading || !isValid;
 
   return (
     <FormProvider {...methods}>
@@ -60,7 +61,7 @@ export function CreatePostForm() {
         <Input name="title" label="Post Title" placeholder="title" />
         <TextArea name="content" label="Post Content" placeholder="Post content" />
         <div className="flex justify-end mt-6 w-full">
-          <Button type="submit" disabled={isDisabled} appearance="primary">
+          <Button type="submit" disabled={isDisabled} appearance="primary" loading={isLoading}>
             Create Post
           </Button>
         </div>
