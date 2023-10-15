@@ -1,17 +1,10 @@
-import type { ComponentPropsWithoutRef } from 'react';
+import type { ComponentPropsWithoutRef } from "react";
 
-export type ThreeDotsLoaderProps = ComponentPropsWithoutRef<'svg'>;
+export type ThreeDotsLoaderProps = ComponentPropsWithoutRef<"svg">;
 
 export function ThreeDotsLoader(props: ThreeDotsLoaderProps) {
   return (
-    <svg
-      width="120"
-      height="30"
-      viewBox="0 0 120 30"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      {...props}
-    >
+    <svg width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="currentColor" {...props}>
       <title>Loading</title>
       <circle cx="15" cy="15" r="15">
         <animate

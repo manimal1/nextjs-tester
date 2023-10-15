@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import { AuthButton } from '@/app/components';
-import { Link, PageLayout } from '@/ui';
+import Image from "next/image";
+import { AuthButton } from "@/app/components";
+import { Link, PageLayout } from "@/ui";
 
 export function Navbar() {
   return (
@@ -8,14 +8,7 @@ export function Navbar() {
       <ul className="flex items-center justify-between">
         <li>
           <Link href="/">
-            <Image
-              src="/pirate-icon.png"
-              alt="Logo"
-              width={48}
-              height={48}
-              priority
-              className="rounded-lg"
-            />
+            <Image src="/pirate-icon.png" alt="Logo" width={48} height={48} priority className="rounded-lg" />
           </Link>
         </li>
         <li>

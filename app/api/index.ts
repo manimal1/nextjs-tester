@@ -1,2 +1,3 @@
-import { authOptions } from './auth/[...nextauth]/route';
+import { authOptions } from "./auth/[...nextauth]/route";
+
 export { authOptions };

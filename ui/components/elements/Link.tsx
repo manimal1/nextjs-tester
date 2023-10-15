@@ -1,6 +1,6 @@
-import classnames from 'classnames';
-import { ReactNode } from 'react';
-import NextLink from 'next/link';
+import classnames from "classnames";
+import { ReactNode } from "react";
+import NextLink from "next/link";
 
 export function Link({
   children,
@@ -15,8 +15,8 @@ export function Link({
   disabled?: boolean;
 }) {
   const classes = classnames(`cursor-pointer`, {
-    'text-gray-200 cursor-not-allowed': disabled,
-    'hover:text-primary title': !disabled,
+    "text-gray-200 cursor-not-allowed": disabled,
+    "hover:text-primary title": !disabled,
   });
 
   return (

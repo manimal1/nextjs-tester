@@ -1,7 +1,7 @@
 'use server';
 
-import { createPost } from '@/queries';
-import { revalidatePath } from 'next/cache';
+import { createPost } from "@/queries";
+import { revalidatePath } from "next/cache";
 
 export async function createPostAction({
   title,

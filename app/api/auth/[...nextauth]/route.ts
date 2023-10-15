@@ -1,6 +1,6 @@
-import NextAuth, { Session, User } from 'next-auth';
-import GitHubProvider from 'next-auth/providers/github';
-import prisma from '@/prisma';
+import NextAuth, { Session, User } from "next-auth";
+import GitHubProvider from "next-auth/providers/github";
+import prisma from "@/prisma";
 
 export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,

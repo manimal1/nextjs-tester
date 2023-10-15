@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import classNames from "classnames";
 
 export interface ErrorMessageProps {
   children?: string[] | string;
@@ -11,10 +11,10 @@ export function ErrorMessage({ children, className, id }: ErrorMessageProps) {
     return null;
   }
 
-  const classes = classNames('text-sm text-error mt-0', className);
+  const classes = classNames("text-sm text-error mt-0", className);
 
   const content =
-    typeof children === 'string' ? (
+    typeof children === "string" ? (
       children
     ) : (
       <ul>
@@ -24,7 +24,7 @@ export function ErrorMessage({ children, className, id }: ErrorMessageProps) {
       </ul>
     );
 
-  if (typeof children === 'string') {
+  if (typeof children === "string") {
     return (
       <p className={classes} id={id}>
         {content}

@@ -1,7 +1,7 @@
-import classNames from 'classnames';
-import { ComponentPropsWithoutRef } from 'react';
+import classNames from "classnames";
+import { ComponentPropsWithoutRef } from "react";
 
-export interface FieldGroupProps extends ComponentPropsWithoutRef<'div'> {
+export interface FieldGroupProps extends ComponentPropsWithoutRef<"div"> {
   id?: string;
   label?: string;
   disabled?: boolean;
@@ -9,9 +9,9 @@ export interface FieldGroupProps extends ComponentPropsWithoutRef<'div'> {
 
 export function FieldGroup({ id, className, disabled, label, children }: FieldGroupProps) {
   const classes = classNames(
-    'flex flex-col space-y-4',
+    "flex flex-col space-y-4",
     {
-      'opacity-50 cursor-not-allowed': disabled,
+      "opacity-50 cursor-not-allowed": disabled,
     },
     className,
   );

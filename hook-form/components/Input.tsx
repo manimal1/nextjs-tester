@@ -1,7 +1,7 @@
-import React from 'react';
-import type { FieldPath, FieldValues } from 'react-hook-form';
-import { useFormContext, useController } from 'react-hook-form';
-import { ErrorMessage, Input as InputBase } from '@/ui';
+import React from "react";
+import type { FieldPath, FieldValues } from "react-hook-form";
+import { useFormContext, useController } from "react-hook-form";
+import { ErrorMessage, Input as InputBase } from "@/ui";
 
 export interface InputProps<TFieldValues extends FieldValues = FieldValues> {
   name: FieldPath<TFieldValues>;

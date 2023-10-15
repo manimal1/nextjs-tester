@@ -1,7 +1,7 @@
-import { ComponentPropsWithoutRef } from 'react';
-import { Container } from './Container';
+import { ComponentPropsWithoutRef } from "react";
+import { Container } from "./Container";
 
-export function PageLayout({ className, children }: ComponentPropsWithoutRef<'div'>) {
+export function PageLayout({ className, children }: ComponentPropsWithoutRef<"div">) {
   return (
     <div className={className}>
       <Container>
