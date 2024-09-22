@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { AuthButton } from "@/app/components";
 import { Link, PageLayout } from "@/ui";
+import Image from "next/image";
 
 export function Navbar() {
   return (
