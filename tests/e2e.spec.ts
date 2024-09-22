@@ -1,25 +1,26 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from "@playwright/test";
 
-test('should navigate to the profile page', async ({ page }) => {
-  await page.goto('http://localhost:3000/');
-  await page.click('text=Profile');
-  await expect(page).toHaveURL('http://localhost:3000/profile');
-  await expect(page.locator('h1')).toContainText('Access Denied');
+test("should navigate to the profile page", async ({ page }) => {
+  await page.goto("http://localhost:3000/");
+  await page.click("text=Profile");
+  await expect(page).toHaveURL("http://localhost:3000/profile");
+  await expect(page.locator("h1")).toContainText("Access Denied");
 });
 
-test.describe('posts', () => {
+test.describe("posts", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:3000/posts');
-  });
-  
-  test('posts page should load', async ({ page }) => {
-    await expect(page.locator('h1')).toContainText('Posts');
+    await page.goto("http://localhost:3000/posts");
   });
 
-  test('should navigate to the first post', async ({ page }) => {
-    await page.getByAltText('post-link').first().click();
-    await page.waitForURL('**/posts/*');
+  test("posts page should load", async ({ page }) => {
+    await expect(page.locator("h1")).toContainText("Posts");
+  });
 
-    expect(page.url()).toContain('/posts/');
+  test("should navigate to the first post", async ({ page }) => {
+    await page.getByTestId("post-link").first().click();
+    await page.waitForURL("http://localhost:3000/posts/*");
+
+    expect(page.url()).toContain("/posts/");
+    expect(page.getByTestId("back-link")).toBeVisible;
   });
 });
