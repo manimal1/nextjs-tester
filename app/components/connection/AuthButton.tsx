@@ -1,13 +1,13 @@
 "use client";
-import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "@/ui";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export function AuthButton() {
   const { data: session } = useSession();
 
   if (session) {
     return (
-      <Button appearance="tertiary" onClick={() => signOut()}>
+      <Button appearance="secondary" onClick={() => signOut()}>
         Sign Out
       </Button>
     );
