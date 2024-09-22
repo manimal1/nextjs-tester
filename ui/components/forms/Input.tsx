@@ -1,6 +1,6 @@
+import classNames from "classnames";
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 import { FieldGroup } from "./FieldGroup";
-import classNames from "classnames";
 
 export interface InputProps extends ComponentPropsWithoutRef<"input"> {
   label?: string;
@@ -12,9 +12,9 @@ export const BaseInput = forwardRef<HTMLInputElement, InputProps>(function BaseI
   ref,
 ) {
   const classes = classNames(
-    "border border-transparent outline-none rounded p-2 focus:ring-2 shadow-sm",
+    "border rounded p-2 focus:ring-2 shadow-sm",
     {
-      "focus:ring-primary": !disabled && !error,
+      "focus:ring-primary border-transparent": !disabled && !error,
       "focus:ring-transparent border-error": !disabled && error,
       "bg-base-200": disabled,
     },

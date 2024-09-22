@@ -1,6 +1,6 @@
+import classNames from "classnames";
 import { ComponentPropsWithoutRef, forwardRef } from "react";
 import { FieldGroup } from "./FieldGroup";
-import classNames from "classnames";
 
 export interface TextAreaProps extends ComponentPropsWithoutRef<"textarea"> {
   label?: string;
@@ -12,7 +12,7 @@ export const BaseTextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(funct
   ref,
 ) {
   const classes = classNames(
-    "border border-transparent outline-none rounded p-2 focus:ring-2 shadow-sm",
+    "border outline-none rounded p-2 focus:ring-2 shadow-sm",
     {
       "focus:ring-primary": !disabled && !error,
       "focus:ring-transparent border-error": !disabled && error,
