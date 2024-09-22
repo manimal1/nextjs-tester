@@ -1,11 +1,11 @@
 "use client";
-import { z } from "zod";
+import { createPostAction } from "@/app/actions";
+import { Input, TextArea } from "@/hook-form";
+import { Button, Container } from "@/ui";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { createPostAction } from "@/app/actions";
-import { Input, TextArea } from "@/hook-form";
-import { Button } from "@/ui";
+import { z } from "zod";
 
 const schema = z.object({
   title: z.string().refine((value) => !!value, { message: "Title is required", path: ["title"] }),
@@ -56,16 +56,19 @@ export function CreatePostForm() {
   const isDisabled = isLoading || !isValid;
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input name="title" label="Post Title" placeholder="title" />
-        <TextArea name="content" label="Post Content" placeholder="Post content" />
-        <div className="flex justify-end mt-6 w-full">
-          <Button type="submit" disabled={isDisabled} appearance="primary" loading={isLoading}>
-            Create Post
-          </Button>
-        </div>
-      </form>
-    </FormProvider>
+    <Container className="bg-base-300 rounded-lg">
+      <h2 className="title-lg mb-8">Create a new post</h2>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input name="title" label="Post Title" placeholder="title" />
+          <TextArea name="content" label="Post Content" placeholder="Post content" />
+          <div className="flex justify-end mt-6 w-full">
+            <Button type="submit" disabled={isDisabled} appearance="primary" loading={isLoading}>
+              Create Post
+            </Button>
+          </div>
+        </form>
+      </FormProvider>
+    </Container>
   );
 }
