@@ -1,25 +1,10 @@
 import classNames from "classnames";
-import {
-  type ComponentPropsWithoutRef,
-  type ComponentType,
-  type ReactNode,
-  type ReactElement as ReactElementBase,
-  type Ref as ReactRef,
-  type RefAttributes as ReactRefAttributes,
-  forwardRef,
-  HTMLAttributes,
-} from "react";
+import { type ComponentPropsWithoutRef, type ComponentType, type Ref as ReactRef, forwardRef } from "react";
 
+import { ThreeDotsLoader } from "@/ui/components/feedback/ThreeDotsLoader";
+import { ScreenReaderText } from "@/ui/components/typography/ScreenReaderText";
 import type { IconSize } from "./Icon";
 import { Icon } from "./Icon";
-import { ScreenReaderText } from "../typography/ScreenReaderText";
-import { ThreeDotsLoader } from "../feedback/ThreeDotsLoader";
-
-declare module "react" {
-  function forwardRef<TElement, TProps = {}>(
-    render: (props: TProps, ref: ReactRef<TElement>) => ReactElementBase | null,
-  ): (props: ReactRefAttributes<TElement> & TProps) => ReactElementBase | null;
-}
 
 const iconSizes: Record<ButtonSize, IconSize> = {
   lg: 6,
@@ -27,26 +12,18 @@ const iconSizes: Record<ButtonSize, IconSize> = {
   sm: 5,
 };
 
-export type ButtonAppearance = "primary" | "secondary" | "tertiary";
+export type ButtonAppearance = "primary" | "secondary" | "tertiary" | "outline";
 export type ButtonSize = "lg" | "md" | "sm";
 
-export type ButtonProps<TProps extends HTMLAttributes<HTMLElement> = ComponentPropsWithoutRef<"button">> = Omit<
-  TProps,
-  "ref"
-> & {
-  children: ReactNode;
+export type ButtonProps = ComponentPropsWithoutRef<"button"> & {
   appearance?: ButtonAppearance;
-  disabled?: boolean;
   leadingIcon?: ComponentType<ComponentPropsWithoutRef<"svg">>;
   loading?: boolean;
   size?: ButtonSize;
   trailingIcon?: ComponentType<ComponentPropsWithoutRef<"svg">>;
-  type?: "button" | "reset" | "submit";
 };
 
-export const Button = forwardRef(function Button<
-  TProps extends HTMLAttributes<HTMLElement> = ComponentPropsWithoutRef<"button">,
->(
+export const Button = forwardRef(function Button(
   {
     className,
     children,
@@ -58,7 +35,7 @@ export const Button = forwardRef(function Button<
     trailingIcon,
     type = "button",
     ...props
-  }: ButtonProps<TProps>,
+  }: ButtonProps,
   ref: ReactRef<HTMLButtonElement>,
 ) {
   const isTextChildren = typeof children === "string";
@@ -73,12 +50,12 @@ export const Button = forwardRef(function Button<
       "p-2": hasIcon && size === "md",
       "p-3": hasIcon && size === "lg",
       relative: loading || hasIcon,
-      "bg-primary text-primary-content border-transparent shadow-sm": appearance === "primary",
+      "btn-primary": appearance === "primary",
       "btn-secondary": appearance === "secondary",
+      "btn-outline": appearance === "outline",
       "btn-tertiary": appearance === "tertiary" && !disabled,
       "hover:bg-primary-focus focus:ring-primary": appearance === "primary" && !disabled,
       "text-sm": size === "sm" || size === "md",
-      "text-primary-content": appearance === "primary",
     },
     className,
   );
