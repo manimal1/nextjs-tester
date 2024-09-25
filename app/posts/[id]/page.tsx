@@ -1,29 +1,36 @@
-import { Post as PostBase } from "@app/posts/components/Post";
-import { getPostById } from "@queries";
-import { Link } from "@ui";
-import { HiArrowLeft } from "react-icons/hi2";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+import axios from "axios";
+import PostById from "./PostById";
 
-export default async function Post({
+async function getPostById(id: string) {
+  const { data } = await axios.get(`/api/posts/${id}`);
+
+  if (!data) {
+    throw new Error("Failed to fetch post");
+  }
+
+  return data;
+}
+
+export default async function PostByIdPage({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  const post = await getPostById(id);
+  const queryClient = new QueryClient();
 
-  if (!post) {
-    return null;
-  }
+  await queryClient.prefetchQuery({
+    queryKey: ["post-by-id", id],
+    queryFn: () => getPostById(id),
+  });
 
   return (
-    <>
-      <Link href="/posts" className="relative">
-        <HiArrowLeft
-          data-testid="back-link"
-          className="text-secondary h-4 w-4 absolute top-1 left-0 right-auto"
-        />
-        <p className="text-secondary ml-4 mb-4">Back to posts</p>
-      </Link>
-      <PostBase post={post} />
-    </>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <PostById id={id} />
+    </HydrationBoundary>
   );
 }

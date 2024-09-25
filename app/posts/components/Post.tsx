@@ -1,16 +1,20 @@
-import { getUserById } from "@queries";
+"use client";
+
+import { PostWithAuthor } from "@app/posts/posts";
 import { Container } from "@ui";
 import dayjs from "dayjs";
 import Image from "next/image";
 
-export async function Post({ post }: any) {
+interface PostProps {
+  post: PostWithAuthor;
+}
+
+export function Post({ post }: PostProps) {
   if (!post) {
-    return null;
+    return false;
   }
 
-  const user = await getUserById(post.authorId);
-
-  const authorName = post.author ? post.author.name : "Unknown author";
+  const authorName = post.author.name;
   const publicationDate = dayjs(post.createdAt).format("DD/MM/YYYY");
 
   return (
@@ -20,7 +24,7 @@ export async function Post({ post }: any) {
           <h2 className="heading">{post?.title}</h2>
           <div className="flex items-center space-x-4">
             <Image
-              src={user?.image ?? ""}
+              src={post.author.image ?? ""}
               className="rounded-full w-8 h-8"
               width={32}
               height={32}
