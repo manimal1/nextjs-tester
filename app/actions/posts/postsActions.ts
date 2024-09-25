@@ -11,7 +11,7 @@ export async function createPostAction({
 }: {
   title: string;
   content: string;
-  authorId?: string | null;
+  authorId: string;
   path: string;
 }) {
   if (!authorId) {
