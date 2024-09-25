@@ -1,5 +1,5 @@
-import { getAllPosts } from "@/queries";
-import { Link } from "@/ui";
+import { getAllPosts } from "@queries";
+import { Link } from "@ui";
 import dayjs from "dayjs";
 import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 import { Post } from "./components/Post";
@@ -11,7 +11,9 @@ export default async function Page() {
     return null;
   }
 
-  const postsSortedByDate = posts.sort((prev, next) => (dayjs(prev.createdAt).isAfter(dayjs(next.createdAt)) ? 1 : -1));
+  const postsSortedByDate = posts.sort((prev, next) =>
+    dayjs(prev.createdAt).isAfter(dayjs(next.createdAt)) ? 1 : -1
+  );
 
   return (
     <section className="flex flex-col">

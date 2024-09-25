@@ -1,7 +1,11 @@
-import { authOptions } from "@/app/api";
+import { authOptions } from "@app/api";
 import { getServerSession } from "next-auth";
 
-export async function ProtectedRoute({ children }: { children: React.ReactNode }) {
+export async function ProtectedRoute({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user) {

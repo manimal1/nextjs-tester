@@ -1,6 +1,6 @@
+import { ErrorMessage, TextArea as TextAreaBase } from "@ui";
 import type { FieldPath, FieldValues } from "react-hook-form";
 import { useController, useFormContext } from "react-hook-form";
-import { ErrorMessage, TextArea as TextAreaBase } from "@/ui";
 
 export interface TextareaProps<TFieldValues extends FieldValues = FieldValues> {
   name: FieldPath<TFieldValues>;
@@ -32,7 +32,9 @@ export function TextArea<TFieldValues extends FieldValues = FieldValues>({
         {...field}
         onBlur={() => trigger(name)}
       />
-      {isError ? <ErrorMessage className="mt-2">{errorMessage}</ErrorMessage> : null}
+      {isError ? (
+        <ErrorMessage className="mt-2">{errorMessage}</ErrorMessage>
+      ) : null}
     </div>
   );
 }

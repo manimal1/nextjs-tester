@@ -1,4 +1,4 @@
-import prisma from '@/prisma';
+import prisma from "@prisma";
 
 export async function getPostById(postId: string) {
   return await prisma.post.findUnique({

@@ -1,4 +1,4 @@
-import { ProtectedRoute } from "@/app/components";
+import { ProtectedRoute } from "@app/components";
 import { CreatePostForm } from "./components/CreatePostForm";
 import { ProfileHeader } from "./components/ProfileHeader";
 

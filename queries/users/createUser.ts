@@ -1,4 +1,4 @@
-import prisma from '@/prisma';
+import prisma from "@prisma";
 
 interface User {
   name: string;
@@ -11,9 +11,9 @@ export async function createUser({ name, profession, email, image }: User) {
   await prisma.user.create({
     data: {
       name,
-      profession: profession ?? '',
+      profession: profession ?? "",
       email,
-      image: image ?? '',
+      image: image ?? "",
     },
   });
 

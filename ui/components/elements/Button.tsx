@@ -1,8 +1,13 @@
 import classNames from "classnames";
-import { type ComponentPropsWithoutRef, type ComponentType, type Ref as ReactRef, forwardRef } from "react";
+import {
+  type ComponentPropsWithoutRef,
+  type ComponentType,
+  type Ref as ReactRef,
+  forwardRef,
+} from "react";
 
-import { ThreeDotsLoader } from "@/ui/components/feedback/ThreeDotsLoader";
-import { ScreenReaderText } from "@/ui/components/typography/ScreenReaderText";
+import { ThreeDotsLoader } from "@ui/components/feedback/ThreeDotsLoader";
+import { ScreenReaderText } from "@ui/components/typography/ScreenReaderText";
 import type { IconSize } from "./Icon";
 import { Icon } from "./Icon";
 
@@ -36,7 +41,7 @@ export const Button = forwardRef(function Button(
     type = "button",
     ...props
   }: ButtonProps,
-  ref: ReactRef<HTMLButtonElement>,
+  ref: ReactRef<HTMLButtonElement>
 ) {
   const isTextChildren = typeof children === "string";
 
@@ -54,10 +59,11 @@ export const Button = forwardRef(function Button(
       "btn-secondary": appearance === "secondary",
       "btn-outline": appearance === "outline",
       "btn-tertiary": appearance === "tertiary" && !disabled,
-      "hover:bg-primary-focus focus:ring-primary": appearance === "primary" && !disabled,
+      "hover:bg-primary-focus focus:ring-primary":
+        appearance === "primary" && !disabled,
       "text-sm": size === "sm" || size === "md",
     },
-    className,
+    className
   );
   const iconClasses = classNames("flex-none", {
     "text-base-content": appearance === "secondary",
@@ -71,7 +77,13 @@ export const Button = forwardRef(function Button(
   });
 
   return (
-    <button ref={ref} type={type} disabled={disabled} className={classes} {...props}>
+    <button
+      ref={ref}
+      type={type}
+      disabled={disabled}
+      className={classes}
+      {...props}
+    >
       {loading ? (
         <span className="absolute inset-0 flex items-center justify-center">
           <ScreenReaderText>Loading</ScreenReaderText>
@@ -81,11 +93,21 @@ export const Button = forwardRef(function Button(
 
       <span className={contentClasses}>
         {leadingIcon ? (
-          <Icon icon={leadingIcon} className={iconClasses} size={iconSizes[size]} aria-hidden={true} />
+          <Icon
+            icon={leadingIcon}
+            className={iconClasses}
+            size={iconSizes[size]}
+            aria-hidden={true}
+          />
         ) : null}
         {children}
         {trailingIcon ? (
-          <Icon icon={trailingIcon} className={iconClasses} size={iconSizes[size]} aria-hidden={true} />
+          <Icon
+            icon={trailingIcon}
+            className={iconClasses}
+            size={iconSizes[size]}
+            aria-hidden={true}
+          />
         ) : null}
       </span>
     </button>

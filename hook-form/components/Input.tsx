@@ -1,4 +1,4 @@
-import { ErrorMessage, Input as InputBase } from "@/ui";
+import { ErrorMessage, Input as InputBase } from "@ui";
 import type { FieldPath, FieldValues } from "react-hook-form";
 import { useController, useFormContext } from "react-hook-form";
 
@@ -27,7 +27,9 @@ export function Input({ name, label, placeholder }: InputProps) {
         {...field}
         onBlur={() => trigger(name)}
       />
-      {isError ? <ErrorMessage className="mt-2">{errorMessage}</ErrorMessage> : null}
+      {isError ? (
+        <ErrorMessage className="mt-2">{errorMessage}</ErrorMessage>
+      ) : null}
     </div>
   );
 }

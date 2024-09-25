@@ -1,15 +1,21 @@
 "use client";
-import { createPostAction } from "@/app/actions";
-import { Input, TextArea } from "@/hook-form";
-import { Button, Container } from "@/ui";
+import { createPostAction } from "@app/actions";
+import { Input, TextArea } from "@hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, Container } from "@ui";
 import { useSession } from "next-auth/react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
 const schema = z.object({
-  title: z.string().refine((value) => !!value, { message: "Title is required", path: ["title"] }),
-  content: z.string().refine((value) => !!value, { message: "Content is required", path: ["content"] }),
+  title: z.string().refine((value) => !!value, {
+    message: "Title is required",
+    path: ["title"],
+  }),
+  content: z.string().refine((value) => !!value, {
+    message: "Content is required",
+    path: ["content"],
+  }),
 });
 
 type FormSchema = z.infer<typeof schema>;
@@ -61,9 +67,18 @@ export function CreatePostForm() {
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input name="title" label="Post Title" placeholder="title" />
-          <TextArea name="content" label="Post Content" placeholder="Post content" />
+          <TextArea
+            name="content"
+            label="Post Content"
+            placeholder="Post content"
+          />
           <div className="flex justify-end mt-6 w-full">
-            <Button type="submit" disabled={isDisabled} appearance="primary" loading={isLoading}>
+            <Button
+              type="submit"
+              disabled={isDisabled}
+              appearance="primary"
+              loading={isLoading}
+            >
               Create Post
             </Button>
           </div>

@@ -1,6 +1,6 @@
-'use server';
+"use server";
 
-import { createPost } from "@/queries";
+import { createPost } from "@queries";
 import { revalidatePath } from "next/cache";
 
 export async function createPostAction({
@@ -15,7 +15,7 @@ export async function createPostAction({
   path: string;
 }) {
   if (!authorId) {
-    throw new Error('No authorId provided');
+    throw new Error("No authorId provided");
   }
 
   await createPost({ title, content, authorId });

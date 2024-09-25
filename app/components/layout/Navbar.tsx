@@ -1,5 +1,5 @@
-import { AuthButton } from "@/app/components";
-import { Link, PageLayout } from "@/ui";
+import { AuthButton } from "@app/components";
+import { Link, PageLayout } from "@ui";
 import Image from "next/image";
 
 export function Navbar() {
@@ -8,7 +8,14 @@ export function Navbar() {
       <ul className="flex items-center justify-between">
         <li>
           <Link href="/">
-            <Image src="/pirate-icon.png" alt="Logo" width={48} height={48} priority className="rounded-lg" />
+            <Image
+              src="/pirate-icon.png"
+              alt="Logo"
+              width={48}
+              height={48}
+              priority
+              className="rounded-lg"
+            />
           </Link>
         </li>
         <li>
