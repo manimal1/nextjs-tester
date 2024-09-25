@@ -1,3 +1,4 @@
+import QueryProvider from "@app/components/providers/QueryProvider";
 import { PageLayout } from "@ui";
 import "@ui/theme/styles.css";
 import type { Metadata } from "next";
@@ -30,8 +31,10 @@ export default async function RootLayout({
         className={`${inter.className} bg-base-100 text-base-content antialiased w-full`}
       >
         <SessionProvider session={session}>
-          <Navbar />
-          <PageLayout className="mt-6">{children}</PageLayout>
+          <QueryProvider>
+            <Navbar />
+            <PageLayout className="mt-6">{children}</PageLayout>
+          </QueryProvider>
         </SessionProvider>
       </body>
     </html>
