@@ -29,7 +29,9 @@ export const authOptions = {
       return true;
     },
     async redirect({ baseUrl }: { baseUrl: string }) {
-      return baseUrl;
+      const productionUrl = process.env.VERCEL_URL || baseUrl;
+
+      return process.env.NODE_ENV === "production" ? productionUrl : baseUrl;
     },
     async session({ session }: { session: Session }) {
       const currentUser = await prisma.user.findUnique({
