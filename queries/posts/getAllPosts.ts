@@ -4,7 +4,7 @@ export async function getAllPosts() {
   return await prisma.post.findMany({
     include: {
       author: {
-        select: { name: true },
+        select: { name: true, image: true },
       },
     },
   });

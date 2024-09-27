@@ -5,7 +5,7 @@ export async function getPostById(postId: string) {
     where: { id: postId },
     include: {
       author: {
-        select: { name: true },
+        select: { name: true, image: true },
       },
     },
   });

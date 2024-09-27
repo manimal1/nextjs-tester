@@ -11,7 +11,7 @@ export async function getPostsByAuthor({
     where: { published: isPublished, authorId },
     include: {
       author: {
-        select: { name: true },
+        select: { name: true, image: true },
       },
     },
   });
