@@ -3,8 +3,8 @@ import { LoadingPage } from "@app/components";
 import { Post as PostType, User } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@ui";
-import axios from "axios";
 import dayjs from "dayjs";
+import { useMemo } from "react";
 import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 import { Post } from "./components/Post";
 
@@ -19,8 +19,20 @@ export default function Posts() {
     error,
   } = useQuery({
     queryKey: ["posts"],
-    queryFn: () => axios.get("/api/posts"),
+    queryFn: async () => (await fetch("/api/posts")).json(),
   });
+
+  const posts: PostWithAuthor[] | undefined = res;
+
+  const postsSortedByDate = useMemo(
+    () =>
+      posts
+        ? posts.sort((prev, next) =>
+            dayjs(prev.createdAt).isAfter(dayjs(next.createdAt)) ? 1 : -1
+          )
+        : [],
+    [posts]
+  );
 
   if (isLoading) {
     return <LoadingPage />;
@@ -31,15 +43,9 @@ export default function Posts() {
     return <div className="text-error">Error fetching posts</div>;
   }
 
-  const posts: PostWithAuthor[] | undefined = res?.data;
-
   if (!posts || posts.length === 0) {
     return false;
   }
-
-  const postsSortedByDate = posts.sort((prev, next) =>
-    dayjs(prev.createdAt).isAfter(dayjs(next.createdAt)) ? 1 : -1
-  );
 
   return (
     <section className="flex flex-col">

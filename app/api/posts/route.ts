@@ -1,16 +1,9 @@
-import prisma from "@prisma";
+import { getAllPosts } from "@queries";
 import { NextResponse } from "next/server";
 
-// Fetch all posts
 export async function GET() {
   try {
-    const posts = await prisma.post.findMany({
-      include: {
-        author: {
-          select: { name: true, image: true },
-        },
-      },
-    });
+    const posts = getAllPosts();
 
     return NextResponse.json(posts);
   } catch (error) {
