@@ -3,8 +3,6 @@ import { LoadingPage } from "@app/components";
 import { Post as PostType, User } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@ui";
-import dayjs from "dayjs";
-import { useMemo } from "react";
 import { HiArrowTopRightOnSquare } from "react-icons/hi2";
 import { Post } from "./components/Post";
 
@@ -22,18 +20,6 @@ export default function Posts() {
     queryFn: async () => (await fetch("/api/posts")).json(),
   });
 
-  const posts: PostWithAuthor[] | undefined = res;
-
-  const postsSortedByDate = useMemo(
-    () =>
-      posts
-        ? posts.sort((prev, next) =>
-            dayjs(prev.createdAt).isAfter(dayjs(next.createdAt)) ? 1 : -1
-          )
-        : [],
-    [posts]
-  );
-
   if (isLoading) {
     return <LoadingPage />;
   }
@@ -43,6 +29,8 @@ export default function Posts() {
     return <div className="text-error">Error fetching posts</div>;
   }
 
+  const posts: PostWithAuthor[] | undefined = res || [];
+
   if (!posts || posts.length === 0) {
     return false;
   }
@@ -51,7 +39,7 @@ export default function Posts() {
     <section className="flex flex-col">
       <h1 className="heading">Posts</h1>
       <div className="flex flex-col space-y-6">
-        {postsSortedByDate.map((post) => (
+        {posts.map((post) => (
           <div className="relative" key={post.id}>
             <Link href={`/posts/${post.id}`} className="inline-block">
               <span className="sr-only">{post.title}</span>

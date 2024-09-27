@@ -7,5 +7,8 @@ export async function getAllPosts() {
         select: { name: true, image: true },
       },
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 }
